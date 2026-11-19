@@ -5,8 +5,11 @@ public class KasseApparat {
     TreeMap<String, Vare> alleVarer = readToMap("data/varer.csv");
     TreeMap<String, Vare> tilbudsVarer = readToMap("data/tilbud.csv");
 
+    public KasseApparat(){
 
-    public TreeMap<String, Vare> readToMap(String path){
+    }
+
+    private TreeMap<String, Vare> readToMap(String path){
         TreeMap<String, Vare> treeMap = new TreeMap<>();
         for (Vare v : FileIO.readFiles(path)){
             treeMap.put(v.getId(), v);
@@ -14,11 +17,11 @@ public class KasseApparat {
         return treeMap;
     }
 
-    public double getPriceBeforeSaleAfterTax(Collection<Vare> kurv){
+    private double getPriceBeforeSaleAfterTax(Collection<Vare> kurv){
         return getTotalPrice(kurv) * 0.25;
     }
 
-    public double getTotalPrice(Collection<Vare> kurv){
+    private double getTotalPrice(Collection<Vare> kurv){
         double sum = 0;
         for (Vare vare : kurv){
             sum += alleVarer.get(vare.getId()).getPrice();
@@ -26,7 +29,7 @@ public class KasseApparat {
         return sum;
     }
 
-    public double getTotalPriceAfterSale(Collection<Vare> kurv){
+    private double getTotalPriceAfterSale(Collection<Vare> kurv){
         double sum = 0;
         for (Vare vare : kurv){
             if (checkForSale(vare)){
@@ -37,19 +40,19 @@ public class KasseApparat {
         return sum;
     }
 
-    public boolean checkForSale(Vare vare){
+    private boolean checkForSale(Vare vare){
         //hvis tilbudsvarer contains key, så true
         if (tilbudsVarer.containsKey(vare.getId())){
             return true;
         } else return false;
     }
 
-    public int getAmountOfDifferentItems(Collection<Vare> kurv){
+    private int getAmountOfDifferentItems(Collection<Vare> kurv){
         HashSet<Vare> varer = new HashSet<>(kurv);
         return varer.size();
     }
 
-    public HashMap<Vare, Integer> getSortedMap(Collection<Vare> kurv){
+    private HashMap<Vare, Integer> getSortedMap(Collection<Vare> kurv){
         HashMap<Vare, Integer> varer = new HashMap<>();
         for (Vare v : kurv){
             if (checkForSale(v)){
@@ -60,15 +63,19 @@ public class KasseApparat {
                 varer.put(alleVarer.get(v.getId()), varer.get(v) + 1);
             } else varer.put(alleVarer.get(v.getId()), 1);
         }
-        return varer;
+        return varer;  //this is ass
     }
 
     public void printReceipt(Collection<Vare> kurv){
         HashMap<Vare, Integer> varer = getSortedMap(kurv);
-        for (Vare v : kurv){
-
+        for (Vare v : varer.keySet()){
+            double price = v.getPrice();
+            System.out.println(v + " " + price);
         }
-
+        System.out.println("antal varer: "+getAmountOfDifferentItems(kurv) +
+                "\ntotalpris(før tilbud, før moms): "+getTotalPrice(kurv) +
+                "\nTotalpris(efter tilbud) " + getTotalPriceAfterSale(kurv) +
+                "\nMoms " + getPriceBeforeSaleAfterTax(kurv));
     }
 
 
