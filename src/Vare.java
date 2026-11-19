@@ -1,4 +1,4 @@
-public class Vare {
+public class Vare implements Comparable<Vare>{
     private int id;
     private String name;
     private double priceDate;
@@ -21,5 +21,20 @@ public class Vare {
         this.isWeighted = isWeighted;
         this.isBio = isBio;
         this.isAvailable = isAvailable;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        return true;
+    }
+
+
+    @Override
+    public int compareTo(Vare vare){
+        return 0;
     }
 }

@@ -1,11 +1,9 @@
-package supermarked.robot;
-
-import supermarked.data.Vare;
+//import supermarked.data.Vare;
 
 import java.util.*;
 
 public class Robot {
-
+/*
     private int min = 5; // minimum antal (slags) varer i kurven
     private int max = 25; // maximum antal (slags) varer i kurven
     private int sandsynlighedForKun1Vare = 70; // procents sandsynlighed for at der kun er et styk af hver slags vare
@@ -14,7 +12,7 @@ public class Robot {
     public Robot() {
 
     }
-
+*/
     /**
      * Denne robot fylder nogle tilfældige varer i kurven.
      * <p>
@@ -26,6 +24,7 @@ public class Robot {
      * @param alleVarer
      * @return en kurv med varer i vilkårlig rækkefølge
      */
+/*
     public Collection<Vare> fyldIKurv(Collection<Vare> alleVarer) {
         // hav en god random klar!
         Random random = new Random();
@@ -54,5 +53,5 @@ public class Robot {
         // og returner den fyldte kurv
         return kurv;
     }
-
+*/
 }

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class FileIO {
 
-    public static ArrayList<Vare> readItems(String path){
+    /*public static ArrayList<Vare> readItems(String path){
         File items = new File(path);
         ArrayList<Vare> itemsList = new ArrayList<>();
         try {
@@ -24,8 +24,43 @@ public class FileIO {
         }
 
         return itemsList;
+    }*/
+
+    private static ArrayList<String> readItems(String path){
+        File items = new File(path);
+        ArrayList<String> list = new ArrayList<>();
+        try {
+            Scanner scan = new Scanner(items);
+            scan.nextLine();
+            while (scan.hasNextLine()){
+                String line = scan.nextLine();
+
+                list.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+
+        return list;
     }
 
+    public static ArrayList<Vare> convertToItems(String path){
+        ArrayList<Vare> items = new ArrayList<>();
+        for (String s : readItems(path)){
+
+            String[] line = s.split(";");
+            items.add(getItems(line));
+        }
+        return items;
+    }
+
+    public static ArrayList<TilbudsVare> convertToSaleItems(String path){
+        ArrayList<TilbudsVare> items = new ArrayList<>();
+        for (Vare v : convertToItems(path)){
+            items.add((TilbudsVare) v);
+        }
+        return items;
+    }
 
     private static Vare getItems(String[] values){
         int id = Integer.parseInt(values[0].trim());
