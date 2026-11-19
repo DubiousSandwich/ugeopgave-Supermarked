@@ -27,6 +27,10 @@ public class Vare {
         return id;
     }
 
+    public double getPrice(){
+        return price;
+    }
+
     @Override
     public boolean equals(Object o){
         return true;
