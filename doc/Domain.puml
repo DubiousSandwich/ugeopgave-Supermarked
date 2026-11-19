@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+object kasseApparat
+object vare
+object kurv
+object kasseBon
+object fileIO
+object supermarked
+object kunde
+
+supermarked --> vare
+supermarked --> kasseApparat
+kunde --> kurv
+kurv --> vare
+supermarked --> kunde
+kasseApparat --> kasseBon
+
+
+@enduml
