@@ -6,7 +6,7 @@ import java.util.TreeMap;
 
 public class FileIO {
 
-    public ArrayList<Vare> readFiles(String path){
+    public static ArrayList<Vare> readFiles(String path){
         File file = new File(path);
         ArrayList<Vare> items = new ArrayList<>();
 
@@ -19,10 +19,10 @@ public class FileIO {
 
                 String id = values[0].trim();
                 String name = values[1].trim();
-                double priceDate = Double.parseDouble(values[2].trim());
+                String priceDate = values[2].trim();
                 double price = Double.parseDouble(values[3].trim());
                 boolean isBudgetBrand = Boolean.parseBoolean(values[4].trim());
-                int quantity = Integer.parseInt(values[5].trim());
+                double quantity = Double.parseDouble(values[5].trim());
                 String unit = values[6].trim();
                 boolean isWeighted = Boolean.parseBoolean(values[7].trim());
                 boolean isBio = Boolean.parseBoolean(values[8].trim());
