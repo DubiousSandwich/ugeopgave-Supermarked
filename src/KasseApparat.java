@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.TreeMap;
+import java.util.*;
 
 public class KasseApparat {
 
@@ -46,7 +44,30 @@ public class KasseApparat {
         } else return false;
     }
 
-    public void printReciept(){
+    public int getAmountOfDifferentItems(Collection<Vare> kurv){
+        HashSet<Vare> varer = new HashSet<>(kurv);
+        return varer.size();
+    }
+
+    public HashMap<Vare, Integer> getSortedMap(Collection<Vare> kurv){
+        HashMap<Vare, Integer> varer = new HashMap<>();
+        for (Vare v : kurv){
+            if (checkForSale(v)){
+                if (varer.containsKey(v)){
+                    varer.put(tilbudsVarer.get(v.getId()), varer.get(v) + 1);
+                } else varer.put(tilbudsVarer.get(v.getId()), 1);
+            } else if (varer.containsKey(v)){
+                varer.put(alleVarer.get(v.getId()), varer.get(v) + 1);
+            } else varer.put(alleVarer.get(v.getId()), 1);
+        }
+        return varer;
+    }
+
+    public void printReceipt(Collection<Vare> kurv){
+        HashMap<Vare, Integer> varer = getSortedMap(kurv);
+        for (Vare v : kurv){
+
+        }
 
     }
 
