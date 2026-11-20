@@ -32,11 +32,6 @@ public class Vare {
     }
 
     @Override
-    public boolean equals(Object o){
-        return true;
-    }
-
-    @Override
     public String toString(){
         return name + ", " + quantity + " " + unit + ", ";
     }
