@@ -38,6 +38,6 @@ public class Vare {
 
     @Override
     public String toString(){
-        return name + ", " + quantity + " " + unit + ", " + price;
+        return name + ", " + quantity + " " + unit + ", ";
     }
 }

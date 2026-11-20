@@ -70,7 +70,7 @@ public class KasseApparat {
         HashMap<Vare, Integer> varer = getSortedMap(kurv);
         for (Vare v : varer.keySet()){
             double price = v.getPrice();
-            System.out.println(v + " " + price);
+            System.out.println(v + " " + varer.get(v) + ", " + price);
         }
         System.out.println("antal varer: "+getAmountOfDifferentItems(kurv) +
                 "\ntotalpris(før tilbud, før moms): "+getTotalPrice(kurv) +
